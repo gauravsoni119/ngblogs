@@ -71,12 +71,12 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: url('img/code-Background.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Replace Property of directives in Angular</h1>
+                        <h1>Isolated scopes in Angular Directives</h1>
                         <!--<h2 class="subheading">Problems look mighty small from 150 miles up</h2>
                         <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>-->
                     </div>
@@ -90,94 +90,52 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Angular directives has replace property which actually used to replace directive tag from DOM. This property
-                        is actually helpful when we have some elements has some css that is interdependent. Consider following
-                        example:-
+                    <p><strong>Isolated scopes</strong> are heavily used in angular directives to make directives resuable.
+                        By default directives access scope of their parent. Changing value in directives changes value in
+                        parent scope. We can define scopes in directives in three ways:-
                     </p>
-                    <code>
-                        angular <br>
-            &nbsp;&nbsp;&nbsp;.module('mangroosHub')<br>
-        &nbsp;&nbsp;&nbsp;.directive('notificationList', notificationList);<br><br>
-
-    &nbsp;&nbsp;&nbsp;notificationList.inject = [''];<br>
-    &nbsp;&nbsp;&nbsp;function notificationList() {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Usage:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Creates:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var directive = {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bindToController: true,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templateUrl: 'app/components/navbar/user-dropdown/notification-list/notification-list.html',<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;controller: NotificationListController,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;controllerAs: 'notificationList',<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link: link,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replace: false,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restrict: 'E',<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scope: {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return directive;<br>
-	}
-                    </code>
-
+                    <ul>
+                        <li>
+                            Set scope property in directives to false(default value of directives) which allows to use scope of their parent.
+                        </li>
+                        <li>
+                            Set scope property in directives to true which allows to create their own scope by using prototypical inheritance.
+                        </li>
+                        <li>
+                            Set scope property to an object with '@'(attribute binding), '='(two way binding) and '&'(expression binding).
+                        </li>
+                    </ul>
                     <p>
-                        <pre>
-                        -----notification-list.html-----
-&lt;ul class="nav navbar-nav navbar-right acme-navbar-text"&gt;
-    &lt;notification-list>&lt;/notification-list&gt;
-    &lt;li class="dropdown"&gt;
-        &lt;a ng-href="#" class="dropdown-toggle"&gt;
-            &lt;i class="fa fa-envelope" aria-hidden="true&gt;&lt;/i&gt;
-            &lt;span class="label">10&lt;/span&gt;
-        &lt;/a&gt;
-        &lt;ul class="dropdown-menu"&gt;
-            &lt;li class="header"&gt;You have 4 messages.&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#"&gt;Support Team&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#"&gt;Admin Team&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-                        </pre>
+                        We disscuss bellow about last one i.e binding properties of directives.
                     </p>
+                    <ul>
+                        <li>
+                            <h3>@: Attribute Binding</h3>
+                            <p>Attribute binding allow directives to simply pass value from parent scope to directives scope.
+                                This is one-way binding. Changes value in directives will not change value in parent.</p>
+                            <script src="https://gist.github.com/gauravsoni119/111937bfd75c10534510f062850ca0fe.js"></script>
+                            <script src="https://gist.github.com/gauravsoni119/7520e99d35787eda6776e55259fe1d68.js"></script>
+                            <p><a href="http://plnkr.co/edit/e8BHdBF0apmuqGyKaMwa?p=preview" target="_blank">Here is a working demo: </a></p>
+                        </li>
+                        <li>
+                            <h3>=: Two way binding</h3>
+                            <p>Two way binding allow to pass value from parent scope to directives scope and from directives
+                                scope to parent scope. Changes value in directives will also change value in parent.</p>
+                            <script src="https://gist.github.com/gauravsoni119/2dc3ead7651b0bf556b91d6e714cf2d3.js"></script>
+                            <p><a href="http://plnkr.co/edit/ZLXcaqzLmTnT2cp3Nabc?p=preview" target="_blank">Here is a working demo: </a></p>
+                        </li>
+                        <li>
+                            <h3>&: Expression binding</h3>
+                            <p>Expression binding allow to call expression or function in parent scope from directives scope.
+                                We can pass value from directives to parent by using expression binding. In bellow code,
+                                we pass message from directive to parent scope by passing message object in <strong>userClick</strong>.</p>
+                            <script src="https://gist.github.com/gauravsoni119/819f6f518aaad632f8fe0290f0aa6602.js"></script>
+                            <p><a href="http://plnkr.co/edit/vrXIIyRO9GDW5CE3gfQm?p=preview" target="_blank">Here is a working demo: </a></p>
+                        </li>
+                    </ul>
 
-                    <p>
-                        <pre>
-                        ----notification.css-----
-.nav .navbar-nav > li.dropdown > a {
-	//Some css rules here
-}
-</pre>
-                    </p>
-
-                    <p>In the above example, If we set replace property false(default value is also false) inside var directive, then in our html we have
-<strong>&lt;notification-list&gt;&lt;/notification-list&gt;</strong> element in DOM which results into breaking css for our HTML.
-In order to fix this, we have to set replace property true which results into replacing element <strong>&lt;notification-list&gt;&lt;/notification-list&gt;</strong> from DOM, resulting
-into only having html of directive.</p>
-
-                    <p>After setting replace true in var directive we have following HTML,</p>
-
-                    <p><pre>
-                        -----notification-list.html-----
-&lt;ul class="nav navbar-nav navbar-right acme-navbar-text"&gt;
-    &lt;li class="dropdown"&gt;
-        &lt;a ng-href="#" class="dropdown-toggle"&gt;
-            &lt;i class="fa fa-envelope" aria-hidden="true&gt;&lt;/i&gt;
-            &lt;span class="label">10&lt;/span&gt;
-        &lt;/a&gt;
-        &lt;ul class="dropdown-menu"&gt;
-            &lt;li class="header"&gt;You have 4 messages.&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#"&gt;Support Team&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="#"&gt;Admin Team&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-                        </pre></p>
-
-                    <!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it
-                        is a task to occupy the generations. And no matter how much progress one makes, there is always the
-                        thrill of just beginning.</p>-->
-
-                    
+                    <p>Isolated scopes are really very poweful feature of angularJs. They allow us to reduce redundency in code
+                        by their reusable nature. </p>
                 </div>
             </div>
         </div>
@@ -216,6 +174,26 @@ into only having html of directive.</p>
                             </a>
                         </li>
                     </ul>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                        /*
+                        var disqus_config = function () {
+                        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+                        */
+                        (function () { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://https-gauravsoni119-github-io-ngblogs.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     <p class="copyright text-muted">Copyright &copy; Dive Into FrontEnd 2017</p>
                 </div>
             </div>
@@ -234,7 +212,7 @@ into only having html of directive.</p>
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
-
+<script id="dsq-count-scr" src="//https-gauravsoni119-github-io-ngblogs.disqus.com/count.js" async></script>
 </body>
 
 </html>
