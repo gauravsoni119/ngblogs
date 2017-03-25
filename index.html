@@ -16,6 +16,7 @@
 
     <!-- Theme CSS -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/loader.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -31,7 +32,16 @@
 
 </head>
 
-<body>
+<body ng-class="{'hide-body': showLoader}">
+    <div id="loader" ng-show="showLoader">
+        <div class="stick"></div>
+        <div class="stick"></div>
+        <div class="stick"></div>
+        <div class="stick"></div>
+        <div class="stick"></div>
+        <div class="stick"></div>
+        <h1 class="loading">Loading...</h1>
+    </div>
     <awesome-navbar></awesome-navbar>
 
     <!-- Page Header -->
