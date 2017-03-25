@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p>Angular directives has replace property which actually used to replace directive tag from DOM. This property is actually
+            helpful when we have some elements has some css that is interdependent. Consider following example:-
+        </p>
+        <code>
+                        angular <br>
+            &nbsp;&nbsp;&nbsp;.module('mangroosHub')<br>
+        &nbsp;&nbsp;&nbsp;.directive('notificationList', notificationList);<br><br>
+
+    &nbsp;&nbsp;&nbsp;notificationList.inject = [''];<br>
+    &nbsp;&nbsp;&nbsp;function notificationList() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Usage:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Creates:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var directive = {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bindToController: true,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templateUrl: 'app/components/navbar/user-dropdown/notification-list/notification-list.html',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;controller: NotificationListController,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;controllerAs: 'notificationList',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link: link,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replace: false,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restrict: 'E',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scope: {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return directive;<br>
+	}
+                    </code>
+
+        <p>
+            <pre>
+                        -----notification-list.html-----
+&lt;ul class="nav navbar-nav navbar-right acme-navbar-text"&gt;
+    &lt;notification-list>&lt;/notification-list&gt;
+    &lt;li class="dropdown"&gt;
+        &lt;a ng-href="#" class="dropdown-toggle"&gt;
+            &lt;i class="fa fa-envelope" aria-hidden="true&gt;&lt;/i&gt;
+            &lt;span class="label">10&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;ul class="dropdown-menu"&gt;
+            &lt;li class="header"&gt;You have 4 messages.&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Support Team&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Admin Team&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+                        </pre>
+        </p>
+
+        <p>
+            <pre>
+                        ----notification.css-----
+.nav .navbar-nav > li.dropdown > a {
+	//Some css rules here
+}
+</pre>
+        </p>
+
+        <p>In the above example, If we set replace property false(default value is also false) inside var directive, then in
+            our html we have
+            <strong>&lt;notification-list&gt;&lt;/notification-list&gt;</strong> element in DOM which results into breaking
+            css for our HTML. In order to fix this, we have to set replace property true which results into replacing element
+            <strong>&lt;notification-list&gt;&lt;/notification-list&gt;</strong> from DOM, resulting into only having html
+            of directive.</p>
+
+        <p>After setting replace true in var directive we have following HTML,</p>
+
+        <p>
+            <pre>
+                        -----notification-list.html-----
+&lt;ul class="nav navbar-nav navbar-right acme-navbar-text"&gt;
+    &lt;li class="dropdown"&gt;
+        &lt;a ng-href="#" class="dropdown-toggle"&gt;
+            &lt;i class="fa fa-envelope" aria-hidden="true&gt;&lt;/i&gt;
+            &lt;span class="label">10&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;ul class="dropdown-menu"&gt;
+            &lt;li class="header"&gt;You have 4 messages.&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Support Team&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Admin Team&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+                        </pre>
+        </p>
+
+        <!--<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it
+                        is a task to occupy the generations. And no matter how much progress one makes, there is always the
+                        thrill of just beginning.</p>-->
+
+
+    </div>
+</div>
+</div>

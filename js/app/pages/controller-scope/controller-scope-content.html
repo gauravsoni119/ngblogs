@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p><strong>Controller</strong> are the javacript objects which contains application logic. It is a constructor function used to prepare data for views.
+It contains objects, properties, functions and expose data to the view.
+        </p>
+        <p>
+            <strong>Scope</strong> is responsible for updating value in view and from view updating data back to controller. We can say that it acts like a glue or an intermediator
+between controller and view. It resides in browser's memory. It is directly accessible to view.
+        </p>
+        <p>
+            Whenever angular finds <strong>ng-controller</strong> directive on DOM element in view/template, it creates a context(or boundary) which is only available to that element
+and elements inside it. Outside of it no one can access that context. Also at this time, angular creates instance of controller and merge it with scope.
+        </p>
+        <div class="well">
+            <img src="img/scope-controller.jpg" alt="">
+        </div>
+
+        <p>We know that scope is directly accessible to view and scope merged controller instance into it. So now all three are interconnected.
+Whenever view updates model, scope gets notified which updates value in controller and vice-versa.</p>
+    </div>
+</div>

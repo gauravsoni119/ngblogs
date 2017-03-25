@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p><strong>Isolated scopes</strong> are heavily used in angular directives to make directives resuable. By default directives
+            access scope of their parent. Changing value in directives changes value in parent scope. We can define scopes
+            in directives in three ways:-
+        </p>
+        <ul>
+            <li>
+                Set scope property in directives to false(default value of directives) which allows to use scope of their parent.
+            </li>
+            <li>
+                Set scope property in directives to true which allows to create their own scope by using prototypical inheritance.
+            </li>
+            <li>
+                Set scope property to an object with '@'(attribute binding), '='(two way binding) and '&'(expression binding).
+            </li>
+        </ul>
+        <p>
+            We disscuss bellow about last one i.e binding properties of directives.
+        </p>
+        <ul>
+            <li>
+                <h3>@: Attribute Binding</h3>
+                <p>Attribute binding allow directives to simply pass value from parent scope to directives scope. This is one-way
+                    binding. Changes value in directives will not change value in parent.</p>
+                <script src="https://gist.github.com/gauravsoni119/111937bfd75c10534510f062850ca0fe.js"></script>
+                <script src="https://gist.github.com/gauravsoni119/7520e99d35787eda6776e55259fe1d68.js"></script>
+                <p><a href="http://plnkr.co/edit/e8BHdBF0apmuqGyKaMwa?p=preview" target="_blank">Here is a working demo: </a></p>
+            </li>
+            <li>
+                <h3>=: Two way binding</h3>
+                <p>Two way binding allow to pass value from parent scope to directives scope and from directives scope to parent
+                    scope. Changes value in directives will also change value in parent.</p>
+                <script src="https://gist.github.com/gauravsoni119/2dc3ead7651b0bf556b91d6e714cf2d3.js"></script>
+                <p><a href="http://plnkr.co/edit/ZLXcaqzLmTnT2cp3Nabc?p=preview" target="_blank">Here is a working demo: </a></p>
+            </li>
+            <li>
+                <h3>&: Expression binding</h3>
+                <p>Expression binding allow to call expression or function in parent scope from directives scope. We can pass
+                    value from directives to parent by using expression binding. In bellow code, we pass message from directive
+                    to parent scope by passing message object in <strong>userClick</strong>.</p>
+                <script src="https://gist.github.com/gauravsoni119/819f6f518aaad632f8fe0290f0aa6602.js"></script>
+                <p><a href="http://plnkr.co/edit/vrXIIyRO9GDW5CE3gfQm?p=preview" target="_blank">Here is a working demo: </a></p>
+            </li>
+        </ul>
+
+        <p>Isolated scopes are really very poweful feature of angularJs. They allow us to reduce redundency in code by their
+            reusable nature. </p>
+    </div>
+</div>
