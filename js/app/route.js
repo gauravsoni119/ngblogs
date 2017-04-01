@@ -44,6 +44,17 @@ angular.module('ngBlogs')
                     }
                 }
             })
+            .state('compile-link', {
+                url: '/compile-link',
+                views: {
+                    'site-heading': {
+                        templateUrl: 'js/app/pages/compile-link/compile-link-heading.html',
+                    },
+                    'main-content': {
+                        templateUrl: 'js/app/pages/compile-link/compile-link-content.html'
+                    }
+                }
+            })
             .state('about', {
                 url: '/about',
                 views: {

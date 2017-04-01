@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p><strong>Compile</strong> is the first phase of angularJs directive. While compiling, angularJs creates copy of the
+            DOM or HTML string and trying to creates template instance of it. Here we can only access elements and attributes
+            . AngularJs compiles directive only once. For example, if we use directive with ng-repeat, then our directive compiles
+            only once.<br>We can style our elements or update values in attributes, but this is not a safe place to update
+            because we have here raw string of HTML or DOM. For updating style, attributes we have link function. AngularJs
+            provides compile function inside directive in order to get control over compile process.
+        </p>
+        <p>
+            <strong>Points to remember:- </strong>
+            <ul>
+                <li>If directive has further child directives, then angularJs also compiles that directives before jumping into
+                    next process.</li>
+                <li>If we use compile function, then our link function will never executes.</li>
+            </ul>
+        </p>
+
+        <p><strong>Linking</strong> is the next step at which we have access to template instance created in compile process.
+            In linking process, controller of directive firstly executes. In controller, data is initialized
+            and scope is created. After that pre function of link executes. This function executes before child elements
+            are linked. This is not safe for DOM manipulations.<br> After pre function executes, the very next post function
+            of link executes. This executes after all child elements are linked. In post function, we have access to elements,
+            attributes, scope and controller. This is safe for DOM manipulations. After the post function executes, angularJs
+            renders the DOM.
+        </p>
+        <img src="img/compile-link.jpg" alt="" class="image-rounded image-responsive">
+        <p>
+            In the above example, firstly compile function of dir1 and then compile function of dir2 executes.
+            After this controller and pre link function of dir1 and then dir2 executes.
+            In the last, post function of dir2 and then dir1 executes. Post function always runs in opposite direction.
+        </p>
+        <p>
+            <strong>Points to remember:- </strong> If directive has further child directives, then angularJs calls controller
+            and pre function of all directives from parent to child(top to bottom). After done with these two function, all
+            post functions from child to parent(bottom to top) are executed.
+        </p>
+    </div>
+</div>
